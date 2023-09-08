@@ -6,10 +6,17 @@
 <body>
     <h1>Coordinate Plotter</h1>
     <form method="POST" action="/add-coordinate">
-        <label for="x">X-coordinate:</label>
-        <input type="number" name="x" required><br><br>
-        <label for="y">Y-coordinate:</label>
-        <input type="number" name="y" required><br><br>
+        {% if not coordinates %}
+        <input type="text" name="coord-name" placeholder="Title!" required><br><br>
+        {% endif %}
+        {% if not coordinates %}
+        <input type="text" name="x-label" placeholder="x label" required>
+        {% endif %}
+        <input type="number" name="x" placeholder="x coordinate"required><br><br>
+        {% if not coordinates %}
+        <input type="text" name="y-label" placeholder="y label" required>
+        {% endif %}
+        <input type="number" name="y" placeholder="y coordinate" required><br><br>
         <input type="submit" value="Add Coordinate">
     </form>
     <h2>Coordinates:</h2>
@@ -26,7 +33,8 @@
     </form>
     <div id="plot">
         {% if plot %}
-            <img src = '{{plot_url}}' alt="Coordinate Plot">
+            <img src = '{{plot_url}}' alt="Coordinate Plot"> <br>
+            <a href="/download-plot">Download Plot</a>
         {% endif %}
     </div>
 </body>

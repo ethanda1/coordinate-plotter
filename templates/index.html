@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coordinate Plotter</title>
+</head>
+<body>
+    <h1>Coordinate Plotter</h1>
+    <form method="POST" action="/add-coordinate">
+        <label for="x">X-coordinate:</label>
+        <input type="number" name="x" required><br><br>
+        <label for="y">Y-coordinate:</label>
+        <input type="number" name="y" required><br><br>
+        <input type="submit" value="Add Coordinate">
+    </form>
+    <h2>Coordinates:</h2>
+    <ul>
+        {% for coordinate in coordinates %}
+            <li>{{ coordinate }}</li>
+        {% endfor %}
+    </ul>
+    <form method="POST" action="/plot">
+        <input type="submit" value="create plot">
+    </form>
+    <form method="POST" action="/reset">
+        <input type="submit" value="reset">
+    </form>
+    <div id="plot">
+        {% if plot %}
+            <img src = '{{plot_url}}' alt="Coordinate Plot">
+        {% endif %}
+    </div>
+</body>
+</html>
